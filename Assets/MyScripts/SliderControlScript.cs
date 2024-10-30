@@ -11,17 +11,23 @@ public class SliderControlScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GetMovementRange();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        GetMovementRange();
+        positionOffset = movementRange * slider.GetComponent<UnityEngine.UI.Slider>().value - movementRange;
+    }
+
+    void GetMovementRange()
+    {
         if (farLimit != null && nearLimit != null)
         {
             farPosition = farLimit.transform.position;
             nearPosition = nearLimit.transform.position;
             movementRange = farPosition - nearPosition;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        positionOffset = movementRange * slider.GetComponent<UnityEngine.UI.Slider>().value - movementRange;
     }
 }
